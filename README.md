@@ -5,5 +5,9 @@ Sistema de manejo de reservaciones para pruebas de manejo
 ### 2025-06-14
 -  Creación del repositorio y ramas individuales para cada integrante.
 - Subida inicial de clases vacías: Usuario, CentroDePruebas, Reserva, AgendaReservas y Main.
-- Configuración de la rama `karina-centro`.
+- Configuración de la rama
+  karina-centro
+marvin-usuario
+gerald-reserva
+valeria-agenda.
 - Envío de invitaciones a los colaboradores.
