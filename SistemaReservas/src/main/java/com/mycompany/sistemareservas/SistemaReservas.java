@@ -27,6 +27,5 @@ public class SistemaReservas {
 
         CentroDePruebas centroSeleccionado = centros[seleccion - 1];
 
-        centroSeleccionado.menuUsuario();
     }
 }
