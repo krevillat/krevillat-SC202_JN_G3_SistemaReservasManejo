@@ -11,13 +11,14 @@ public class CentroDePruebas {
         "07:00", "08:00", "09:00", "10:00", "11:00",
         "12:00", "13:00", "14:00", "15:00", "16:00"
     };
-
+// Constructor que se inicializa cuando se crea un objeto de Centro de Oruebas
     public CentroDePruebas(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.cuposPorHora = new int[horas.length];
+        //bucle inicializa cada posición del arreglo con el valor 15.
         for (int i = 0; i < cuposPorHora.length; i++) {
-            cuposPorHora[i] = 15; // Inicialmente 15 espacios por hora
+            cuposPorHora[i] = 15; 
         }
     }
 
@@ -30,12 +31,13 @@ public class CentroDePruebas {
     }
 
     public void mostrarDisponibilidad() {
-        StringBuilder info = new StringBuilder("Horarios disponibles:\n");
+        String info = "Horarios disponibles:\n";  // Esta variable concatena los textos. 
+        //En cada vuelta del for, se agrega a info una nueva línea con la hora y la cantidad de espacios.
         for (int i = 0; i < horas.length; i++) {
-            info.append(horas[i]).append(" → ").append(cuposPorHora[i]).append(" espacios\n");
+            info += horas[i] + " → " + cuposPorHora[i] + " espacios\n";
         }
-        JOptionPane.showMessageDialog(null, info.toString());
-    }
+        JOptionPane.showMessageDialog(null, info);
+}
 
 //    public void agregarHorario(String hora) {
 //        for (int i = 0; i < horas.length; i++) {
