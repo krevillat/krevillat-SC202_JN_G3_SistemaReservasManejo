@@ -2,68 +2,66 @@ package com.mycompany.sistemareservas;
 
 import javax.swing.JOptionPane;
 
-public class CentroDePruebas {
-    
-    private String nombre;
-    private String direccion;
-    private int[] cuposPorHora; // 15 cupos por cada hora
-    private String[] horas = {
-        "07:00", "08:00", "09:00", "10:00", "11:00",
-        "12:00", "13:00", "14:00", "15:00", "16:00"
-    };
+public class SistemaReservas {
 
-    public CentroDePruebas(String nombre, String direccion) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.cuposPorHora = new int[horas.length];
-        for (int i = 0; i < cuposPorHora.length; i++) {
-            cuposPorHora[i] = 15; // Inicialmente 15 espacios por hora
+    public static void main(String[] args) {
+
+        // Crear los centros de pruebas
+        CentroDePruebas[] centros = new CentroDePruebas[4];
+        centros[0] = new CentroDePruebas("La Valencia", "Heredia");
+        centros[1] = new CentroDePruebas("La Sabana", "San José");
+        centros[2] = new CentroDePruebas("El Coyol", "Alajuela");
+        centros[3] = new CentroDePruebas("Limón", "Limón");
+
+        // Selección de centro primero
+        String mensajeCentros = "Seleccione un centro de pruebas:\n";
+        for (int i = 0; i < centros.length; i++) {
+            mensajeCentros += (i + 1) + ". " + centros[i].getNombre() + "\n";
         }
-    }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void mostrarDisponibilidad() {
-        StringBuilder info = new StringBuilder("Horarios disponibles:\n");
-        for (int i = 0; i < horas.length; i++) {
-            info.append(horas[i]).append(" → ").append(cuposPorHora[i]).append(" espacios\n");
+        int seleccion = Integer.parseInt(JOptionPane.showInputDialog(mensajeCentros));
+        if (seleccion < 1 || seleccion > centros.length) {
+            JOptionPane.showMessageDialog(null, "Selección inválida. Saliendo del sistema.");
+            return;
         }
-        JOptionPane.showMessageDialog(null, info.toString());
-    }
 
-    public void agregarHorario(String hora) {
-        for (int i = 0; i < horas.length; i++) {
-            if (horas[i].equals(hora)) {
-                if (cuposPorHora[i] > 0) {
-                    cuposPorHora[i]--;
-                    JOptionPane.showMessageDialog(null, "Nuevo horario agregadocon éxito en " + hora);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No hay espacios disponibles en ese horario.");
-                }
-                return;
+        CentroDePruebas centroSeleccionado = centros[seleccion - 1];
+
+        int opcion = 0;
+        while (opcion != 4) {
+            String menu = "CENTRO SELECCIONADO: " + centroSeleccionado.getNombre() + "\n\n";
+            menu += "1. Ver horarios disponibles\n";
+            menu += "2. Agregar horario\n";
+            menu += "3. Eliminar horario\n";
+            menu += "4. Salir\n";
+
+            String input = JOptionPane.showInputDialog(menu);
+            if (input == null) break;
+            try {
+                opcion = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    centroSeleccionado.mostrarDisponibilidad();
+                    break;
+                case 2:
+                    String horaAgregar = JOptionPane.showInputDialog("Ingrese la hora a agregar (ej: 07:00):");
+                    centroSeleccionado.agregarHorario(horaAgregar);
+                    break;
+                case 3:
+                    String horaEliminar = JOptionPane.showInputDialog("Ingrese la hora a eliminar (ej: 07:00):");
+                    centroSeleccionado.eliminarHorario(horaEliminar);
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, "Gracias por usar el sistema.");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         }
-        JOptionPane.showMessageDialog(null, "Horario no válido.");
-    }
-
-    public void eliminarHorario(String hora) {
-        for (int i = 0; i < horas.length; i++) {
-            if (horas[i].equals(hora)) {
-                if (cuposPorHora[i] < 15) {
-                    cuposPorHora[i]++;
-                    JOptionPane.showMessageDialog(null, "Eliminación exitosa para el horario " + hora);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No hay reservas previas en ese horario.");
-                }
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Horario no válido.");
     }
 }
