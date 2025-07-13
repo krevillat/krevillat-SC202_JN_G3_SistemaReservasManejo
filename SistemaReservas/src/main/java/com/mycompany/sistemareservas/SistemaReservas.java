@@ -6,68 +6,38 @@ public class SistemaReservas {
 
     public static void main(String[] args) {
 
-        // Crear los 4 centros de pruebas
+        // Crear los centros de pruebas
         CentroDePruebas[] centros = new CentroDePruebas[4];
         centros[0] = new CentroDePruebas("La Valencia", "Heredia");
         centros[1] = new CentroDePruebas("La Sabana", "San José");
         centros[2] = new CentroDePruebas("El Coyol", "Alajuela");
         centros[3] = new CentroDePruebas("Limón", "Limón");
 
-        // Menú de selección de centro
-        String mensajeCentros = "Seleccione un centro de pruebas:\n";
-        for (int i = 0; i < centros.length; i++) {
-            mensajeCentros += (i + 1) + ". " + centros[i].getNombre() + "\n";
-        }
+        int opcionPrincipal = 0;
 
-        String entrada = JOptionPane.showInputDialog(mensajeCentros);
-        if (entrada == null || !entrada.matches("[1-4]")) {
-            JOptionPane.showMessageDialog(null, "Selección inválida. Saliendo del sistema.");
-            return;
-        }
+        while (opcionPrincipal != 3) {
+            String menuPrincipal = "MENÚ PRINCIPAL\n\n";
+            menuPrincipal += "1. Reservar o cancelar en un centro\n";
+            menuPrincipal += "2. Administrar horarios de un centro\n";
+            menuPrincipal += "3. Salir\n";
 
-        int seleccion = Integer.parseInt(entrada); //convierte la entrada a un valor entero
-        CentroDePruebas centroSeleccionado = centros[seleccion - 1];
+            opcionPrincipal = Integer.parseInt(JOptionPane.showInputDialog(menuPrincipal));
 
-        // Menú del centro seleccionado
-        int opcion = 0;
-        while (opcion != 5) {
-            String menu = "CENTRO SELECCIONADO: " + centroSeleccionado.getNombre() + "\n\n";
-            menu += "1. Ver dirección del centro\n";
-            menu += "2. Ver horarios disponibles\n";
-            menu += "3. Agregar un horario\n";
-            menu += "4. Quitar un horario\n";
-            menu += "5. Salir\n";
+            if (opcionPrincipal == 1 || opcionPrincipal == 2) {
+                // Menú de selección de centro
+                String mensajeCentros = "Seleccione un centro de pruebas:\n";
+                for (int i = 0; i < centros.length; i++) {
+                    mensajeCentros += (i + 1) + ". " + centros[i].getNombre() + "\n";
+                }
 
-            String entradaOpcion = JOptionPane.showInputDialog(menu);
-            if (entradaOpcion == null || !entradaOpcion.matches("[1-5]")) {
-                JOptionPane.showMessageDialog(null, "Ingrese un número válido entre 1 y 5.");
-                continue;
-            }
+                int seleccion = Integer.parseInt(JOptionPane.showInputDialog(mensajeCentros));
+                if (seleccion < 1 || seleccion > centros.length) {
+                    JOptionPane.showMessageDialog(null, "Selección inválida.");
+                    continue;
+                }
 
-            opcion = Integer.parseInt(entradaOpcion);
+                CentroDePruebas centroSeleccionado = centros[seleccion - 1];
 
-            switch (opcion) {
-                case 1:
-                    JOptionPane.showMessageDialog(null, "Dirección: " + centroSeleccionado.getDireccion());
-                    break;
-
-                case 2:
-                    centroSeleccionado.mostrarDisponibilidad();
-                    break;
-
-                case 3:
-                    String horaAgregar = JOptionPane.showInputDialog("Ingrese el nuevo horario a habilitar (ej: 07:00, 08:00, ..., 16:00):");
-                    centroSeleccionado.agregarHorario(horaAgregar);
-                    break;
-
-                case 4:
-                    String horaQuitar = JOptionPane.showInputDialog("Ingrese el horario a eliminar (ej: 07:00):");
-                    centroSeleccionado.eliminarHorario(horaQuitar);
-                    break;
-
-                case 5:
-                    JOptionPane.showMessageDialog(null, "Gracias por usar el sistema.");
-                    break;
             }
         }
     }
