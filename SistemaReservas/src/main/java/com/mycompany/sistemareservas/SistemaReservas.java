@@ -13,31 +13,47 @@ public class SistemaReservas {
         centros[2] = new CentroDePruebas("El Coyol", "Alajuela");
         centros[3] = new CentroDePruebas("Limón", "Limón");
 
-        int opcionPrincipal = 0;
+        // Selección de centro primero
+        String mensajeCentros = "Seleccione un centro de pruebas:\n";
+        for (int i = 0; i < centros.length; i++) {
+            mensajeCentros += (i + 1) + ". " + centros[i].getNombre() + "\n";
+        }
 
-        while (opcionPrincipal != 3) {
-            String menuPrincipal = "MENÚ PRINCIPAL\n\n";
-            menuPrincipal += "1. Reservar o cancelar en un centro\n";
-            menuPrincipal += "2. Administrar horarios de un centro\n";
-            menuPrincipal += "3. Salir\n";
+        int seleccion = Integer.parseInt(JOptionPane.showInputDialog(mensajeCentros));
+        if (seleccion < 1 || seleccion > centros.length) {
+            JOptionPane.showMessageDialog(null, "Selección inválida. Saliendo del sistema.");
+            return;
+        }
 
-            opcionPrincipal = Integer.parseInt(JOptionPane.showInputDialog(menuPrincipal));
+        CentroDePruebas centroSeleccionado = centros[seleccion - 1];
 
-            if (opcionPrincipal == 1 || opcionPrincipal == 2) {
-                // Menú de selección de centro
-                String mensajeCentros = "Seleccione un centro de pruebas:\n";
-                for (int i = 0; i < centros.length; i++) {
-                    mensajeCentros += (i + 1) + ". " + centros[i].getNombre() + "\n";
-                }
+        int opcionAdmin = 0;
+        while (opcionAdmin != 4) {
+            String menuAdmin = "ADMINISTRACIÓN DE CENTRO: " + centroSeleccionado.getNombre() + "\n\n";
+            menuAdmin += "1. Ver horarios disponibles\n";
+            menuAdmin += "2. Habilitar nuevo horario\n";
+            menuAdmin += "3. Eliminar horario\n";
+            menuAdmin += "4. Salir\n";
 
-                int seleccion = Integer.parseInt(JOptionPane.showInputDialog(mensajeCentros));
-                if (seleccion < 1 || seleccion > centros.length) {
-                    JOptionPane.showMessageDialog(null, "Selección inválida.");
-                    continue;
-                }
+            opcionAdmin = Integer.parseInt(JOptionPane.showInputDialog(menuAdmin));
 
-                CentroDePruebas centroSeleccionado = centros[seleccion - 1];
-
+            switch (opcionAdmin) {
+                case 1:
+                    centroSeleccionado.mostrarDisponibilidad();
+                    break;
+                case 2:
+                    String nuevoHorario = JOptionPane.showInputDialog("Ingrese el nuevo horario a habilitar (ej: 15:00):");
+                    centroSeleccionado.habilitarHorario(nuevoHorario);
+                    break;
+                case 3:
+                    String horarioEliminar = JOptionPane.showInputDialog("Ingrese el horario a eliminar (ej: 15:00):");
+                    centroSeleccionado.eliminarHorario(horarioEliminar);
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, "Gracias por usar el sistema.");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         }
     }
