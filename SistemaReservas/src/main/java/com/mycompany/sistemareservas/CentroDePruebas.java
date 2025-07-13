@@ -37,12 +37,12 @@ public class CentroDePruebas {
         JOptionPane.showMessageDialog(null, info.toString());
     }
 
-    public void reservarHorario(String hora) {
+    public void agregarHorario(String hora) {
         for (int i = 0; i < horas.length; i++) {
             if (horas[i].equals(hora)) {
                 if (cuposPorHora[i] > 0) {
                     cuposPorHora[i]--;
-                    JOptionPane.showMessageDialog(null, "Reserva realizada con éxito en " + hora);
+                    JOptionPane.showMessageDialog(null, "Nuevo horario agregadocon éxito en " + hora);
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay espacios disponibles en ese horario.");
                 }
@@ -52,12 +52,12 @@ public class CentroDePruebas {
         JOptionPane.showMessageDialog(null, "Horario no válido.");
     }
 
-    public void cancelarHorario(String hora) {
+    public void eliminarHorario(String hora) {
         for (int i = 0; i < horas.length; i++) {
             if (horas[i].equals(hora)) {
                 if (cuposPorHora[i] < 15) {
                     cuposPorHora[i]++;
-                    JOptionPane.showMessageDialog(null, "Cancelación exitosa para el horario " + hora);
+                    JOptionPane.showMessageDialog(null, "Eliminación exitosa para el horario " + hora);
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay reservas previas en ese horario.");
                 }
