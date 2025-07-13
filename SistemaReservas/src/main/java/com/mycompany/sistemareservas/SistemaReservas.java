@@ -27,34 +27,6 @@ public class SistemaReservas {
 
         CentroDePruebas centroSeleccionado = centros[seleccion - 1];
 
-        int opcion = 0;
-        while (opcion != 4) {
-            String menu = "CENTRO SELECCIONADO: " + centroSeleccionado.getNombre() + "\n\n";
-            menu += "1. Ver horarios disponibles\n";
-            menu += "2. Agregar horario\n";
-            menu += "3. Eliminar horario\n";
-            menu += "4. Salir\n";
-
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
-
-            switch (opcion) {
-                case 1:
-                    centroSeleccionado.mostrarDisponibilidad();
-                    break;
-                case 2:
-                    String horaAgregar = JOptionPane.showInputDialog("Ingrese la hora a reservar (ej: 07:00):");
-                    centroSeleccionado.agregarHorario(horaAgregar);
-                    break;
-                case 3:
-                    String horaEliminar = JOptionPane.showInputDialog("Ingrese la hora a cancelar (ej: 07:00):");
-                    centroSeleccionado.eliminarHorario(horaEliminar);
-                    break;
-                case 4:
-                    JOptionPane.showMessageDialog(null, "Gracias por usar el sistema.");
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Opción inválida.");
-            }
-        }
+        centroSeleccionado.menuUsuario();
     }
 }
