@@ -27,27 +27,27 @@ public class SistemaReservas {
 
         CentroDePruebas centroSeleccionado = centros[seleccion - 1];
 
-        int opcionAdmin = 0;
-        while (opcionAdmin != 4) {
-            String menuAdmin = "ADMINISTRACIÓN DE CENTRO: " + centroSeleccionado.getNombre() + "\n\n";
-            menuAdmin += "1. Ver horarios disponibles\n";
-            menuAdmin += "2. Habilitar nuevo horario\n";
-            menuAdmin += "3. Eliminar horario\n";
-            menuAdmin += "4. Salir\n";
+        int opcion = 0;
+        while (opcion != 4) {
+            String menu = "CENTRO SELECCIONADO: " + centroSeleccionado.getNombre() + "\n\n";
+            menu += "1. Ver horarios disponibles\n";
+            menu += "2. Agregar horario\n";
+            menu += "3. Eliminar horario\n";
+            menu += "4. Salir\n";
 
-            opcionAdmin = Integer.parseInt(JOptionPane.showInputDialog(menuAdmin));
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
 
-            switch (opcionAdmin) {
+            switch (opcion) {
                 case 1:
                     centroSeleccionado.mostrarDisponibilidad();
                     break;
                 case 2:
-                    String nuevoHorario = JOptionPane.showInputDialog("Ingrese el nuevo horario a habilitar (ej: 15:00):");
-                    centroSeleccionado.habilitarHorario(nuevoHorario);
+                    String horaAgregar = JOptionPane.showInputDialog("Ingrese la hora a reservar (ej: 07:00):");
+                    centroSeleccionado.agregarHorario(horaAgregar);
                     break;
                 case 3:
-                    String horarioEliminar = JOptionPane.showInputDialog("Ingrese el horario a eliminar (ej: 15:00):");
-                    centroSeleccionado.eliminarHorario(horarioEliminar);
+                    String horaEliminar = JOptionPane.showInputDialog("Ingrese la hora a cancelar (ej: 07:00):");
+                    centroSeleccionado.eliminarHorario(horaEliminar);
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Gracias por usar el sistema.");
