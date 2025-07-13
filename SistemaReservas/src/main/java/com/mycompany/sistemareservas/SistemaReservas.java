@@ -27,5 +27,9 @@ public class SistemaReservas {
 
         CentroDePruebas centroSeleccionado = centros[seleccion - 1];
 
-    }
+        JOptionPane.showMessageDialog(null, "Centro seleccionado: " + centroSeleccionado.getNombre());
+        JOptionPane.showMessageDialog(null, "Dirección: " + centroSeleccionado.getDireccion());
+        centroSeleccionado.mostrarDisponibilidad();
+        
+    }   
 }
