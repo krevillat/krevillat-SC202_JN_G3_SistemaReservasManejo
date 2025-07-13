@@ -1,68 +1,90 @@
+package com.mycompany.sistemareservas;
+
+import javax.swing.JOptionPane;
 
 public class CentroDePruebas {
- // Atributos
+
+    // Atributos
     private String nombre;
     private String direccion;
-    private String[] horariosDisponibles;
-    private int contadorHorarios;
+    private String[] horas = {"07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
+        "13:00", "14:00", "15:00", "16:00"};
+    private boolean[][] disponibilidad = new boolean[10][15]; // 10 horas, 15 espacios por hora
 
     // Constructor
     public CentroDePruebas(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.horariosDisponibles = new String[9];  //9hrs
-        this.contadorHorarios = 0;
-    }
 
-    // Muestra todos los horarios disponibles en consola
-    public void muestraHorarios() {
-        if (contadorHorarios == 0) {
-            System.out.println("No hay horarios disponibles actualmente.");
-        } else {
-            for (int i = 0; i < contadorHorarios; i++) {
-                System.out.println("Horario " + (i + 1) + ": " + horariosDisponibles[i]);
+        // Inicializar disponibilidad en true
+        for (int i = 0; i < disponibilidad.length; i++) {
+            for (int j = 0; j < disponibilidad[i].length; j++) {
+                disponibilidad[i][j] = true;
             }
         }
     }
 
-    // Muestra la dirección del centro de pruebas
-    public void muestraDireccion() {
-        System.out.println("Dirección del centro: " + direccion);
+    // Mostrar dirección
+    public void mostrarDireccion() {
+        JOptionPane.showMessageDialog(null, "Dirección: " + direccion);
     }
 
-    // Agrega un nuevo horario si hay espacio
-    public void agregaHorario(String nuevoHorario) {
+    // Mostrar horarios disponibles
+    public void mostrarDisponibilidad() {
+        String mensaje = "Disponibilidad en " + nombre + ":\n";
+        for (int i = 0; i < horas.length; i++) {
+            int disponibles = 0;
+            for (int j = 0; j < disponibilidad[i].length; j++) {
+                if (disponibilidad[i][j]) {
+                    disponibles++;
+                }
+            }
+            mensaje += horas[i] + ": " + disponibles + " espacios libres\n";
+        }
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+
+    // Método para agregar un horario disponible (no reservado aún)
+    public void agregarHorarioDisponible(String hora) {
+        for (int i = 0; i < contadorHorarios; i++) {
+            if (horariosDisponibles[i].equals(hora)) {
+                JOptionPane.showMessageDialog(null, "Ese horario ya existe.");
+                return;
+            }
+        }
         if (contadorHorarios < horariosDisponibles.length) {
-            horariosDisponibles[contadorHorarios] = nuevoHorario;
+            horariosDisponibles[contadorHorarios] = hora;
             contadorHorarios++;
-            System.out.println("Horario agregado correctamente.");
+            JOptionPane.showMessageDialog(null, "Horario agregado correctamente.");
         } else {
-            System.out.println("No se pueden agregar más horarios. Capacidad máxima alcanzada.");
+            JOptionPane.showMessageDialog(null, "No se pueden agregar más horarios.");
         }
     }
 
-    // Elimina un horario si existe en la lista
-    public void quitaHorario(String horario) {
+    // Método para eliminar un horario disponible
+    public void eliminarHorario(String hora) {
         boolean encontrado = false;
+
         for (int i = 0; i < contadorHorarios; i++) {
-            if (horariosDisponibles[i].equals(horario)) {
-                // Mover los elementos hacia la izquierda para llenar el espacio
+            if (horariosDisponibles[i].equals(hora)) {
+                // Desplazar los elementos a la izquierda
                 for (int j = i; j < contadorHorarios - 1; j++) {
                     horariosDisponibles[j] = horariosDisponibles[j + 1];
                 }
                 horariosDisponibles[contadorHorarios - 1] = null;
                 contadorHorarios--;
                 encontrado = true;
-                System.out.println("Horario eliminado correctamente.");
+                JOptionPane.showMessageDialog(null, "Horario eliminado correctamente.");
                 break;
             }
         }
+
         if (!encontrado) {
-            System.out.println("El horario no fue encontrado en la lista.");
+            JOptionPane.showMessageDialog(null, "El horario ingresado no existe.");
         }
     }
 
-    // Getters
+    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -71,11 +93,6 @@ public class CentroDePruebas {
         return direccion;
     }
 
-    public int getCantidadHorarios() {
-        return contadorHorarios;
-    }
-
-    // Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -83,5 +100,4 @@ public class CentroDePruebas {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-}   
-
+}
