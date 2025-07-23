@@ -18,7 +18,7 @@ public class Reserva {
         private String tipoPrueba; //teorica practica
         private String estado; //activa cancelada 
         private Usuario usuario;
-        private CentroPruebas centro;
+        private CentrodePruebas centro;
            
         
         public Reserva(Usuario usuario, CentroDePruebas centro, String fecha, String hora, String tipoLicencia, String tipoPrueba){
@@ -74,7 +74,7 @@ public class Reserva {
             System.out.println("Tipo de Licencia: " + tipoLicencia);
             System.out.println("Tipo de Prueba: " + tipoPrueba);
             System.out.println("Estado: " + estado);
-            System.out.println("----------------------------------");
+            System.out.println("*******************************");
         }
   
 }
