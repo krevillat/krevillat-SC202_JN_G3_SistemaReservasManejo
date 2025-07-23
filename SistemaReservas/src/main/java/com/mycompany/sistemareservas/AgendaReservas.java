@@ -5,10 +5,11 @@
 package com.mycompany.sistemareservas;
 
 import javax.swing.JOptionPane;
+
     public class AgendaReservas {
 
 
-        public static void main(String[] args) {
+        public static void mostrarMenu() {
         
             String[] reservas = new String[5]; // máximo 5 reservas
             int cantidadReservas = 0;
