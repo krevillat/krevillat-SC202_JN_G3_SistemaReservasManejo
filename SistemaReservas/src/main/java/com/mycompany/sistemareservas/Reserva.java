@@ -24,7 +24,7 @@ public class Reserva {
         public Reserva(Usuario usuario, CentroDePruebas centro, String fecha, String hora, String tipoLicencia, String tipoPrueba){
             
             this.idReserva = ++contadorReservas;
-            this.usuario = usuario;
+            //this.usuario = usuario;
             this.centro = centro;
             this.fecha = fecha;
             this.hora = hora;
@@ -67,7 +67,7 @@ public class Reserva {
             
             System.out.println("*****Detalle de la Reserva*****");
             System.out.println("ID Reserva: " + idReserva);
-            System.out.println("Usuario: " + usuario.getNombre());
+            //System.out.println("Usuario: " + usuario.getNombre());
             System.out.println("Centro: " + centro.getNombre());
             System.out.println("Fecha: " + fecha);
             System.out.println("Hora: " + hora);
