@@ -22,6 +22,8 @@ public class SistemaReservas {
         if (sesionIniciada) {
             String opcion = "";
 
+            //**************Agregar un break para el look o cambiar a Switch************
+
             while (!opcion.equals("4")) {
                 opcion = JOptionPane.showInputDialog(null,"Seleccione una opción:\n1. Gestión de reservas \n2. Horarios disponibles \n3. Gestión de usuarios\n4. Salir", "Menú principal\n", JOptionPane.QUESTION_MESSAGE);
 
