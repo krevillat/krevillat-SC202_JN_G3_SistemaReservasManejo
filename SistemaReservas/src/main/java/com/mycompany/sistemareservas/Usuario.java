@@ -74,6 +74,8 @@ public class Usuario {
         cantidadUsuarios++;
     }
 
+    //*****************Agregar un contador para 3 intentos de contrasena y volver a menu de inicio. Hay un loop en inicio de sesion******
+
     //Método: Inicio de sesión
     public static boolean iniciarSesion() {
         boolean acceso = false;
