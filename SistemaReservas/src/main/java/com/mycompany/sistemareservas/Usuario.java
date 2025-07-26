@@ -93,12 +93,15 @@ public class Usuario {
 
             if (!acceso) {
                 intentos++
-                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos \nIntente de nuevo", "Error de credenciales", JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+                if (intentos <3) {
+                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos \nIntente de nuevo", "Error de credenciales", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
                 JOptionPane.showMessageDialog(null, "Demasiados intentos. Se terminara la sesion");
                 System.exit(0);
+                }
             }
+            
 
         return acceso;
     }
