@@ -93,7 +93,7 @@ public class Usuario {
             }
 
             if (!acceso) {
-                intentos++
+                intentos ++;
                 if (intentos <3) {
                     JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos \nIntente de nuevo", "Error de credenciales", JOptionPane.ERROR_MESSAGE);
                 }
