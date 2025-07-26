@@ -74,13 +74,12 @@ public class Usuario {
         cantidadUsuarios++;
     }
 
-    //*****************Agregar un contador para 3 intentos de contrasena y volver a menu de inicio. Hay un loop en inicio de sesion******
 
     //Método: Inicio de sesión
     public static boolean iniciarSesion() {
         boolean acceso = false;
 
-        while (!acceso) {
+        while (!acceso && intentos < 3) {
             String user = JOptionPane.showInputDialog(null, "Ingrese nombre de usuario:", "Inicio de sesión", JOptionPane.QUESTION_MESSAGE);
             String pass = JOptionPane.showInputDialog(null, "Ingrese contraseña:", "Inicio de sesión",JOptionPane.QUESTION_MESSAGE);
 
@@ -93,9 +92,13 @@ public class Usuario {
             }
 
             if (!acceso) {
+                intentos++
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos \nIntente de nuevo", "Error de credenciales", JOptionPane.ERROR_MESSAGE);
             }
-        }
+            else {
+                JOptionPane.showMessageDialog(null, "Demasiados intentos. Se terminara la sesion");
+                System.exit(0);
+            }
 
         return acceso;
     }
