@@ -78,6 +78,7 @@ public class Usuario {
     //Método: Inicio de sesión
     public static boolean iniciarSesion() {
         boolean acceso = false;
+        int intentos = 0;
 
         while (!acceso && intentos < 3) {
             String user = JOptionPane.showInputDialog(null, "Ingrese nombre de usuario:", "Inicio de sesión", JOptionPane.QUESTION_MESSAGE);
