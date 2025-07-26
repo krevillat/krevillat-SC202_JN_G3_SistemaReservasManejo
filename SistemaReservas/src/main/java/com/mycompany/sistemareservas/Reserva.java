@@ -18,14 +18,14 @@ public class Reserva {
         private String tipoPrueba; //teorica practica
         private String estado; //activa cancelada 
         private Usuario usuario;
-        private CentrodePruebas centro;
+        //private CentrodePruebas centro;
            
         
         public Reserva(Usuario usuario, CentroDePruebas centro, String fecha, String hora, String tipoLicencia, String tipoPrueba){
             
             this.idReserva = ++contadorReservas;
             //this.usuario = usuario;
-            this.centro = centro;
+            //this.centro = centro;
             this.fecha = fecha;
             this.hora = hora;
             this.tipoLicencia = tipoLicencia;
@@ -68,7 +68,7 @@ public class Reserva {
             System.out.println("*****Detalle de la Reserva*****");
             System.out.println("ID Reserva: " + idReserva);
             //System.out.println("Usuario: " + usuario.getNombre());
-            System.out.println("Centro: " + centro.getNombre());
+            //System.out.println("Centro: " + centro.getNombre());
             System.out.println("Fecha: " + fecha);
             System.out.println("Hora: " + hora);
             System.out.println("Tipo de Licencia: " + tipoLicencia);
