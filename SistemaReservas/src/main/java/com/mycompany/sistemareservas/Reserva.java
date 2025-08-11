@@ -67,7 +67,6 @@ public class Reserva {
             
             System.out.println("*****Detalle de la Reserva*****");
             System.out.println("ID Reserva: " + idReserva);
-            System.out.println("Usuario: " + usuario.getNombre());
             System.out.println("Centro: " + centro.getNombre());
             System.out.println("Fecha: " + fecha);
             System.out.println("Hora: " + hora);
