@@ -4,7 +4,7 @@
  */
 import javax.swing.JOptionPane;
 
-public class ProyectoAgendaReservas {
+public class AgendaReservas {
 
     public static void main(String[] args) {
         mostrarMenu();
