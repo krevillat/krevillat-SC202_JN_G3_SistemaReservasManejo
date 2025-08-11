@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class CentroDePruebas {
 
-    // Atributos del centro
+    
     private String nombre;
     private String direccion;
 
@@ -52,7 +52,7 @@ public class CentroDePruebas {
     }
 
     // Este método asigna la cantidad de cupos según la hora del día
-    private int obtenerCuposPorHora(int hora) {
+    public int obtenerCuposPorHora(int hora) {
         if (hora >= 7 && hora <= 11) return 15; // mañana
         if (hora >= 12 && hora <= 14) return 8; // medio día
         if (hora == 15) return 4;               // tarde
@@ -60,7 +60,7 @@ public class CentroDePruebas {
         return 0;
     }
 
-    // Muestra la disponibilidad completa 
+    // Muestra la disponibilidad  
     public void mostrarDisponibilidad() {
         String mensaje = String.format("%-8s", "Hora");
 
@@ -94,7 +94,7 @@ public class CentroDePruebas {
     }
 
     // Método para reservar un cupo si hay disponibilidad
-    public boolean realizarReserva(String dia, String hora) {
+    public boolean agendaReserva(String dia, String hora) {
         int diaIndex = -1;
         // Buscar el índice del día
         for (int i = 0; i < dias.length; i++) {
@@ -188,4 +188,44 @@ public class CentroDePruebas {
     public String getDireccion() {
         return direccion;
     }
+    
+       
+    public static CentroDePruebas[] centros;
+
+    public static CentroDePruebas[] listaCentros() {
+        if (centros == null) {
+            centros = new CentroDePruebas[4];
+            centros[0] = new CentroDePruebas("La Valencia", "La Valencia, Heredia. Frente al Walmart de Heredia.");
+            centros[1] = new CentroDePruebas("La Sabana", "San José. Costado oeste del Estadio Nacional, La Sabana.");
+            centros[2] = new CentroDePruebas("El Coyol", "Zona Industrial El Coyol, Alajuela. Contiguo a planta Dos Pinos.");
+            centros[3] = new CentroDePruebas("Limón", "Centro de Limón. 200 metros norte del Parque Vargas, calle principal.");
+        }
+        return centros;
+    }
+
+    public static int seleccionarCentro(CentroDePruebas[] centros) {
+        while (true) {
+            String mensaje = "Seleccione un centro de pruebas:\n";
+            for (int i = 0; i < centros.length; i++) {
+                mensaje += (i + 1) + ". " + centros[i].getNombre() + "\n";
+                }
+
+            String sel = JOptionPane.showInputDialog(mensaje);
+            if (sel == null) return -1; 
+
+
+
+            int index = Integer.parseInt(sel) - 1;
+            if (index < 0 || index >= centros.length) {
+                JOptionPane.showMessageDialog(null, "Opción fuera de rango.");
+                continue;
+                }
+            return index;
+            }
+    }
+
+    
+  
+
+    
 }
