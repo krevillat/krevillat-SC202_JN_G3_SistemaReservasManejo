@@ -10,10 +10,25 @@ public class SistemaReservas {
         Usuario.cargarUsuariosFijos();
 
         //Decisión: Para determinar cual método se debe llamar primero
-        String opcionInicio = JOptionPane.showInputDialog(null, "Bienvenido \n\n¿Tiene una cuenta? \n1. Sí \n2. No", "Cuenta", JOptionPane.QUESTION_MESSAGE);
-
-        if (opcionInicio != null && opcionInicio.equals("2")) {
-            Usuario.registrarUsuario(); //Llama método de registro
+        String opcionInicio = "0";
+        
+        while (opcionInicio != "1" && opcionInicio != "2") {  
+            opcionInicio = JOptionPane.showInputDialog(null, "Bienvenido \n\n¿Tiene una cuenta? \n1. Sí \n2. No \n3. Salir", "Cuenta", JOptionPane.QUESTION_MESSAGE);
+           
+            if (opcionInicio.equals("1")) {
+                Usuario.iniciarSesion();
+             
+            }else if (opcionInicio.equals("2")) {
+                Usuario.registrarUsuario(); //Llama método de registro
+                
+            }else if (opcionInicio.equals("3")) {
+                System.exit(0);
+                
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "Opción inválida.");
+                    
+            }
         }
 
         boolean sesionIniciada = Usuario.iniciarSesion(); //Llama método de inicio de sesión
