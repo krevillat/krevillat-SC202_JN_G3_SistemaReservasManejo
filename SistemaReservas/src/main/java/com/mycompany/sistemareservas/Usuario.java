@@ -106,4 +106,59 @@ public class Usuario {
         }
         return acceso;
     }
+
+    public static void editarUsuario() {
+    // Mostrar lista de usuarios
+    String lista = "Usuarios registrados:\n";
+    for (int i = 0; i < cantidadUsuarios; i++) {
+        lista += (i + 1) + ". " + usuarios[i] + " (" + nombres[i] + ")\n";
+    }
+    JOptionPane.showMessageDialog(null, lista, "Lista de usuarios", JOptionPane.INFORMATION_MESSAGE);
+
+    // Solicitar nombre de usuario a editar
+    String usuarioBuscar = JOptionPane.showInputDialog(null, "Ingrese el nombre de usuario que desea editar:", "Editar usuario", JOptionPane.QUESTION_MESSAGE);
+    if (usuarioBuscar == null || usuarioBuscar.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Operación cancelada.", "Cancelar", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    boolean encontrado = false;
+    for (int i = 0; i < cantidadUsuarios; i++) {
+        if (usuarios[i] != null && usuarios[i].equals(usuarioBuscar)) {
+            encontrado = true;
+
+            // Cambiar nombre
+            String nuevoNombre = JOptionPane.showInputDialog(null, "Nuevo nombre completo:", nombres[i]);
+            if (nuevoNombre != null && !nuevoNombre.trim().isEmpty()) {
+                nombres[i] = nuevoNombre;
+            }
+
+            // Cambiar usuario
+            String nuevoUsuario = JOptionPane.showInputDialog(null, "Nuevo nombre de usuario:", usuarios[i]);
+            if (nuevoUsuario != null && !nuevoUsuario.trim().isEmpty()) {
+                usuarios[i] = nuevoUsuario;
+            }
+
+            // Cambiar contraseña
+            String nuevaContrasena = JOptionPane.showInputDialog(null, "Nueva contraseña:", contrasenas[i]);
+            if (nuevaContrasena != null && !nuevaContrasena.trim().isEmpty()) {
+                contrasenas[i] = nuevaContrasena;
+            }
+
+            // Mostrar datos modificados
+            JOptionPane.showMessageDialog(null, 
+                "Datos actualizados:\nNombre: " + nombres[i] +
+                "\nUsuario: " + usuarios[i] +
+                "\nContraseña: " + contrasenas[i],
+                "Modificación exitosa", JOptionPane.INFORMATION_MESSAGE);
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(null, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }
+    
+    
 }
