@@ -10,32 +10,34 @@ public class SistemaReservas {
         Usuario.cargarUsuariosFijos();
 
         //Decisión: Para determinar cual método se debe llamar primero
-        String opcionInicio = "0";
-        
-        while (opcionInicio != "1" && opcionInicio != "2") {  
-            opcionInicio = JOptionPane.showInputDialog(null, "Bienvenido \n\n¿Tiene una cuenta? \n1. Sí \n2. No \n3. Salir", "Cuenta", JOptionPane.QUESTION_MESSAGE);
-           
-            if (opcionInicio.equals("1")) {
-                Usuario.iniciarSesion();
-             
-            }else if (opcionInicio.equals("2")) {
-                Usuario.registrarUsuario(); //Llama método de registro
-                
-            }else if (opcionInicio.equals("3")) {
-                System.exit(0);
-                
-            
-            }else{
-                JOptionPane.showMessageDialog(null, "Opción inválida.");
-                    
+               boolean sesionIniciada = false;
+        while (!sesionIniciada) {
+            String opcionInicio = JOptionPane.showInputDialog(
+                null,
+                "Bienvenido \n\n¿Tiene una cuenta?\n1. Sí\n2. No\n3. Salir",
+                "Cuenta",
+                JOptionPane.QUESTION_MESSAGE
+            );
+            if (opcionInicio == null || "3".equals(opcionInicio)) return;
+
+            switch (opcionInicio) {
+                case "1":
+                    sesionIniciada = Usuario.iniciarSesion();
+                    if (!sesionIniciada) {
+                        JOptionPane.showMessageDialog(null, "Usuario o contraseña inválidos.");
+                    }
+                    break;
+                case "2":
+                    Usuario.registrarUsuario();
+                    sesionIniciada = Usuario.iniciarSesion();
+                    if (!sesionIniciada) {
+                        JOptionPane.showMessageDialog(null, "Credenciales inválidas tras el registro.");
+                    }
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         }
-
-        boolean sesionIniciada = Usuario.iniciarSesion(); //Llama método de inicio de sesión
-
-        //Si se registra correctamente, pasa al menú principal
-        if (sesionIniciada) {
-            String opcion = "";
 
             //**************Agregar un break para el look o cambiar a Switch************
 
