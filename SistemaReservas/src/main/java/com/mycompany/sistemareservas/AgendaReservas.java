@@ -79,7 +79,7 @@ public class AgendaReservas {
                     if (cantidadReservas == 0) {
                         lista = "No hay reservas aún.";
                     } else {
-                        listaReserva sb = new listaReserva ("Reservas actuales:\n");
+                        listaReserva lr = new listaReserva ("Reservas actuales:\n");
                         for (int i = 0; i < cantidadReservas; i++) {
                             sb.append(i + 1).append(". ").append(reservas[i]).append("\n");
                         }
