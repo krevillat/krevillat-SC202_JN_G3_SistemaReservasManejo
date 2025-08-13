@@ -51,7 +51,7 @@ public class SistemaReservas {
                 } else if (opcion.equals("2")) {
                     JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
                 } else if (opcion.equals("3")) {
-                    JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
+                    Usuario.editarUsuario();
                 } else if (opcion.equals("4")) {
                     JOptionPane.showMessageDialog(null, "Gracias por usar el sistema", "Salida del sistema", JOptionPane.INFORMATION_MESSAGE);
                     System.exit(0);
