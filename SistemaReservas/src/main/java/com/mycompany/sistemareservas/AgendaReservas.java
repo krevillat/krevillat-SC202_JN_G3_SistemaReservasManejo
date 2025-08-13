@@ -79,11 +79,11 @@ public class AgendaReservas {
                     if (cantidadReservas == 0) {
                         lista = "No hay reservas aún.";
                     } else {
-                        StringBuilder sb = new StringBuilder("Reservas actuales:\n");
+                        listaReserva sb = new listaReserva ("Reservas actuales:\n");
                         for (int i = 0; i < cantidadReservas; i++) {
                             sb.append(i + 1).append(". ").append(reservas[i]).append("\n");
                         }
-                        lista = sb.toString();
+                        lista = lr.toString();
                     }
                     JOptionPane.showMessageDialog(null, lista);
                     break;
