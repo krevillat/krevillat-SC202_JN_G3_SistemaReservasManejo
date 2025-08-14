@@ -51,7 +51,7 @@ public class SistemaReservas {
 
                 switch (opcion) {
                     case "1":
-                        JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
+                        AgendaReservas.mostrarMenu();
                         break;
                     case "2":
                         JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
