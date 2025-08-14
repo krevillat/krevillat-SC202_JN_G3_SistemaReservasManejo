@@ -1,3 +1,9 @@
+
+
+//Elaborado por KREVILLAT//
+//Esta clase tiene como finalidad gestionar las diferentes cedes y horarios para las pruebas de manejo. //
+
+
 package com.mycompany.sistemareservas;
 
 import javax.swing.JOptionPane;
