@@ -43,7 +43,7 @@ public class SistemaReservas {
             String opcion = "";
 
             while (!opcion.equals("4")) {
-                opcion = JOptionPane.showInputDialog(null,"Seleccione una opción:\n1. Gestión de reservas \n2. Horarios disponibles \n3. Gestión de usuarios\n4. Salir", "Menú principal\n", JOptionPane.QUESTION_MESSAGE);
+                opcion = JOptionPane.showInputDialog(null,"Seleccione una opción:\n1. Gestión de reservas \n2. Gestión de usuarios\n3. Salir", "Menú principal\n", JOptionPane.QUESTION_MESSAGE);
 
                 if (opcion == null) {
                     break; // Usuario cerró la ventana
@@ -54,12 +54,9 @@ public class SistemaReservas {
                         AgendaReservas.mostrarMenu();
                         break;
                     case "2":
-                        JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
-                        break;
-                    case "3":
                         Usuario.editarUsuario();
                         break;
-                    case "4":
+                    case "3":
                         JOptionPane.showMessageDialog(null, "Gracias por usar el sistema", "Salida del sistema", JOptionPane.INFORMATION_MESSAGE);
                         System.exit(0);
                     default:
