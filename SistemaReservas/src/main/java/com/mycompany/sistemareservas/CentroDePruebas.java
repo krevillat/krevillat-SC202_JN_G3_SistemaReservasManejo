@@ -78,17 +78,17 @@ public class CentroDePruebas {
 
         // Recorrer todas las horas de lunes a viernes
         for (int h = 0; h < horasSemana.length; h++) {
-            mensaje += String.format("%-8s", horasSemana[h]);
+            mensaje += String.format("%-10s", horasSemana[h]);
 
             for (int d = 0; d < dias.length; d++) {
                 String[] horas = (d == 5) ? horasSabado : horasSemana;
 
                 // Si el horario existe para ese día, mostramos los cupos
                 if (h < horas.length) {
-                    mensaje += String.format("%-10d", cuposPorDiaHora[d][h]);
+                    mensaje += String.format("%-15d", cuposPorDiaHora[d][h]);
                 } else {
                     // Si no hay ese horario (por ejemplo, sábado en la tarde), mostramos un guion
-                    mensaje += String.format("%-10s", "-");
+                    mensaje += String.format("%-20s", "-");
                 }
             }
 
