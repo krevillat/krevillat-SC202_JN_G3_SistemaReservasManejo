@@ -40,6 +40,7 @@ public class SistemaReservas {
         }
 
             //**************Agregar un break para el look o cambiar a Switch************
+            String opcion = "";
 
             while (!opcion.equals("4")) {
                 opcion = JOptionPane.showInputDialog(null,"Seleccione una opción:\n1. Gestión de reservas \n2. Horarios disponibles \n3. Gestión de usuarios\n4. Salir", "Menú principal\n", JOptionPane.QUESTION_MESSAGE);
@@ -48,17 +49,22 @@ public class SistemaReservas {
                     break; // Usuario cerró la ventana
                 }
 
-                if (opcion.equals("1")) {
-                    JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
-                } else if (opcion.equals("2")) {
-                    JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
-                } else if (opcion.equals("3")) {
-                    Usuario.editarUsuario();
-                } else if (opcion.equals("4")) {
-                    JOptionPane.showMessageDialog(null, "Gracias por usar el sistema", "Salida del sistema", JOptionPane.INFORMATION_MESSAGE);
-                    System.exit(0);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Opción inválida.");
+                switch (opcion) {
+                    case "1":
+                        JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
+                        break;
+                    case "2":
+                        JOptionPane.showMessageDialog(null, "Sección en construcción", "Información", JOptionPane.WARNING_MESSAGE);
+                        break;
+                    case "3":
+                        Usuario.editarUsuario();
+                        break;
+                    case "4":
+                        JOptionPane.showMessageDialog(null, "Gracias por usar el sistema", "Salida del sistema", JOptionPane.INFORMATION_MESSAGE);
+                        System.exit(0);
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opción inválida.");
+                        break;
                 }
             }
         } 
