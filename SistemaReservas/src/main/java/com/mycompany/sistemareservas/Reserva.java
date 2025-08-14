@@ -16,7 +16,6 @@ public class Reserva {
         private String hora;
         private String tipoLicencia;  // Moto o Carro
         private String tipoPrueba; //teorica practica
-        private String estado; //activa cancelada 
         private Usuario usuario;
         private CentroDePruebas centro;
            
@@ -30,7 +29,7 @@ public class Reserva {
             this.hora = hora;
             this.tipoLicencia = tipoLicencia;
             this.tipoPrueba = tipoPrueba;
-            this.estado = "Activa";
+            
             
         }
         
@@ -54,10 +53,6 @@ public class Reserva {
             return tipoPrueba;
         }
         
-        public String getEstado(){
-            return estado;
-        }
-        
         public void cancelarReserva() {
             this.estado = "Cancelada";
             System.out.println("Reserva #" + idReserva + "ha sido cancelada");
@@ -72,7 +67,6 @@ public class Reserva {
             System.out.println("Hora: " + hora);
             System.out.println("Tipo de Licencia: " + tipoLicencia);
             System.out.println("Tipo de Prueba: " + tipoPrueba);
-            System.out.println("Estado: " + estado);
             System.out.println("*******************************");
         }
   
