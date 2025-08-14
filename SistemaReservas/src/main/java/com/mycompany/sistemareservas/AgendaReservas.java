@@ -81,7 +81,7 @@ public class AgendaReservas {
     // Intentar agendar
     boolean ok = centro.agendaReserva(dia, hora);
     if (ok) {
-        reservas[cantidadReservas++] = nombre + " | " + tipoLicencia + " | " + tipoPrueba + " | " + estado
+        reservas[cantidadReservas++] = nombre + " | " + tipoLicencia + " | " + tipoPrueba + " | "
                                        + " | " + centro.getNombre() + " | " + dia + " " + hora;
         JOptionPane.showMessageDialog(null, "Reserva guardada.");
     } else {
