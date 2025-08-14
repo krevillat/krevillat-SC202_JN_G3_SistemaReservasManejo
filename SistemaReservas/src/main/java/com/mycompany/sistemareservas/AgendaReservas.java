@@ -1,5 +1,5 @@
 package com.mycompany.sistemareservas;
-//
+
 import javax.swing.JOptionPane;
 
 public class AgendaReservas {
@@ -41,46 +41,53 @@ public class AgendaReservas {
     }
 
     private static void crearReserva() {
-        // 1) Seleccionar centro
-        int indexCentro = CentroDePruebas.seleccionarCentro(centros);
-        if (indexCentro == -1) return; // cancelado
+    // 1) Seleccionar centro
+    int indexCentro = CentroDePruebas.seleccionarCentro(centros);
+    if (indexCentro == -1) return; // cancelado
 
-        // 2) Instancia seleccionada
-        CentroDePruebas centro = centros[indexCentro];
+    CentroDePruebas centro = centros[indexCentro];
 
-        // 3) Mostrar disponibilidad
-        JOptionPane.showMessageDialog(
-            null,
-            "Centro: " + centro.getNombre() + "\nDirección: " + centro.getDireccion(),
-            "Centro de Pruebas Seleccionado",
-            JOptionPane.INFORMATION_MESSAGE
-        );
-        centro.mostrarDisponibilidad();
+    // Mostrar disponibilidad
+    JOptionPane.showMessageDialog(
+        null,
+        "Centro: " + centro.getNombre() + "\nDirección: " + centro.getDireccion(),
+        "Centro de Pruebas Seleccionado",
+        JOptionPane.INFORMATION_MESSAGE
+    );
+    centro.mostrarDisponibilidad();
 
-        // 4) Verificar espacio
-        if (cantidadReservas >= reservas.length) {
-            JOptionPane.showMessageDialog(null, "No hay espacios disponibles.");
-            return;
-        }
-
-        String nombre = JOptionPane.showInputDialog("Ingrese su nombre para la reserva:");
-        if (nombre == null || nombre.trim().isEmpty()) return;
-
-        String dia = JOptionPane.showInputDialog("Día (Lunes..Sábado):");
-        if (dia == null) return;
-
-        String hora = JOptionPane.showInputDialog("Hora (ej. 07:00, 12:00, 15:00):");
-        if (hora == null) return;
-
-        // 5) Intentar agendar
-        boolean ok = centro.agendaReserva(dia, hora);
-        if (ok) {
-            reservas[cantidadReservas++] = nombre + " | " + centro.getNombre() + " | " + dia + " " + hora;
-            JOptionPane.showMessageDialog(null, "Reserva guardada.");
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay cupos disponibles o datos inválidos.");
-        }
+    // Verificar espacio
+    if (cantidadReservas >= reservas.length) {
+        JOptionPane.showMessageDialog(null, "No hay espacios disponibles.");
+        return;
     }
+
+    // Datos del usuario
+    String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
+    if (nombre == null || nombre.trim().isEmpty()) return;
+
+    String tipoLicencia = JOptionPane.showInputDialog("Tipo de licencia (Moto/Carro):");
+    if (tipoLicencia == null) return;
+
+    String tipoPrueba = JOptionPane.showInputDialog("Tipo de prueba (Teórica/Práctica):");
+    if (tipoPrueba == null) return;
+
+    String dia = JOptionPane.showInputDialog("Día (Lunes..Sábado):");
+    if (dia == null) return;
+
+    String hora = JOptionPane.showInputDialog("Hora (ej. 07:00, 12:00, 15:00):");
+    if (hora == null) return;
+
+    // Intentar agendar
+    boolean ok = centro.agendaReserva(dia, hora);
+    if (ok) {
+        reservas[cantidadReservas++] = nombre + " | " + tipoLicencia + " | " + tipoPrueba + " | " + estado
+                                       + " | " + centro.getNombre() + " | " + dia + " " + hora;
+        JOptionPane.showMessageDialog(null, "Reserva guardada.");
+    } else {
+        JOptionPane.showMessageDialog(null, "No hay cupos disponibles o datos inválidos.");
+    }
+}
 
     private static void verReservas() {
         if (cantidadReservas == 0) {
