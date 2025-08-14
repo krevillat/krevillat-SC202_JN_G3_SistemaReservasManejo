@@ -53,10 +53,7 @@ public class Reserva {
             return tipoPrueba;
         }
         
-        public void cancelarReserva() {
-            this.estado = "Cancelada";
-            System.out.println("Reserva #" + idReserva + "ha sido cancelada");
-        }
+        
         
         public void mostrarDetalle(){
             
