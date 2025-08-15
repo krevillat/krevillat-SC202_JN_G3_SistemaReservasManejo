@@ -9,10 +9,10 @@ public class CentroDePruebas {
 
     // Días: Lunes a Viernes
     private String[] dias;
-    // Horas reducidas: 07:00 a 14:00
+
     private String[] horasSemana;
 
-    // cuposPorDiaHora[día][hora] -> cupos disponibles
+    // cuposPorDiaHora[día][hora] 
     private int[][] cuposPorDiaHora;
 
     // Constructor --------------------
@@ -119,7 +119,7 @@ public class CentroDePruebas {
 
  
     private int obtenerCuposPorHora(int horaEntera) {
-        // Ajusta la regla si lo necesitas
+     
         if (horaEntera >= 7 && horaEntera <= 9) return 5;
         if (horaEntera >= 10 && horaEntera <= 12) return 4;
         if (horaEntera >= 13 && horaEntera <= 14) return 3;
